@@ -13,3 +13,6 @@ To connect remotely to your account, we need to use `ssh`. With the terminal ope
 ```
 ssh cse15l23w██@ieng5.ucsd.edu
 ```
+
+After clickling enter to run the command, you should be prompted for your password. Note that when you enter in your password, nothing that you enter in will show up. This is intentional. You may then be asked to confirm that you want to connect; you should type 'yes' to continue.
+
