@@ -8,4 +8,8 @@ Now, we can open a terminal in Visual Studio Code. On Mac OS, this can be done b
 
 <img width="1025" alt="Screen Shot 2023-01-12 at 11 17 17 AM" src="https://user-images.githubusercontent.com/122562285/212160586-8028e6a8-a480-4cc3-b2d1-5a3d5b53f12d.png">
 
-To connect remotely to your account, we need to use `ssh`.
+To connect remotely to your account, we need to use `ssh`. With the terminal open, type `ssh`, then a space, and then the username of you CSE 15L account followed by `@ieng6.ucsd.edu`. Your command should look something like this
+
+```
+ssh cse15l23w██@ieng5.ucsd.edu
+```
