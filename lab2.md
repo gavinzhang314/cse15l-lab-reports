@@ -25,3 +25,51 @@ the first screenshot. Here, `StringServerHandler` also appends the message in th
 appearing a line below the first"`, followed by a new line, to `message`. However, `message` was initially empty
 in the first screenshot, in this screenshot, it is not empty, as it already contains the message from earlier.
 
+## Part 2: Debugging
+
+I will be using `ArrayExamples.reversed()` to complete this section.
+
+The input in this test induces a failure:
+```
+@Test 
+public void testFailureInducing() {
+    int[] input = { 1, 2, 3, 4, 5 };
+    assertArrayEquals(new int[]{ 5, 4, 3, 2, 1 }, ArrayExamples.reversed(input));
+}
+```
+The input in this test does not induce a failure:
+```
+@Test
+public void testNotFailureInducing() {
+    int[] input = { 0, 0, 0 };
+    assertArrayEquals(new int[]{ 0, 0, 0 }, ArrayExamples.reversed(input));
+}
+```
+Running these tests yields the following JUnit output:
+<img width="1025" alt="image" src="lab2-screenshot4.png">
+
+The bug is on the sixth line in this code snippet. Here, the loop iterates through each member of `arr` and sets it to an element in `newArray` in reverse order. However, because all of the elements in `newArray` are uninitialized and therefore equal to 0, all that the loop does is set each member of `arr` to 0. This is why the second test passes but the first does not.
+```
+// Returns a *new* array with all the elements of the input array in reversed
+// order
+static int[] reversed(int[] arr) {
+    int[] newArray = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+        arr[i] = newArray[arr.length - i - 1]; // BUG!
+    }
+    return arr;
+}
+```
+We can fix this simply by changing the order of the two terms in the variable assignment in line 6 and returning `newArray` instead of `arr`.
+```
+// Returns a *new* array with all the elements of the input array in reversed
+// order
+static int[] reversed(int[] arr) {
+    int[] newArray = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+        newArray[arr.length - i - 1] = arr[i];
+    }
+    return newArray;
+}
+```
+By changing the code like this, we ensure that, as the loop iterates through all of the elements in `arr`, the elements in `arr` are used to populate `newArray` in reverse order. Therefore, we end up with `newArray` containing all of `arr`'s elements but in reverse order, so we can simply return `newArray`.
