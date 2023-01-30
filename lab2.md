@@ -1,6 +1,6 @@
 # Lab Report 2: Servers and Bugs
 
-## Part 1: `StringServer`
+## Part 1
 
 This is the code I used to implement the server:
 <img width="1025" alt="image" src="lab2-screenshot3.png">
@@ -25,7 +25,7 @@ the first screenshot. Here, `StringServerHandler` also appends the message in th
 appearing a line below the first"`, followed by a new line, to `message`. However, `message` was initially empty
 in the first screenshot, in this screenshot, it is not empty, as it already contains the message from earlier.
 
-## Part 2: Debugging
+## Part 2
 
 I will be using `ArrayExamples.reversed()` to complete this section.
 
@@ -73,3 +73,7 @@ static int[] reversed(int[] arr) {
 }
 ```
 By changing the code like this, we ensure that, as the loop iterates through all of the elements in `arr`, the elements in `arr` are used to populate `newArray` in reverse order. Therefore, we end up with `newArray` containing all of `arr`'s elements but in reverse order, so we can simply return `newArray`.
+
+## Part 3
+
+One thing I learned this week that I didn't really realize before was that while writing tests, instead of choosing inputs at random, it helps to think over how you personally might implement the program you are trying to test, since you might start off by making some bad assumptions or choices that the program you are testing also makes. This helped when debugging `ArrayExamples.averageWithoutLowest`, since it led us to the consider that the method may have been written with the assumption that the lowest number in the input appeared only once, and so we should test inputs that don't have this characteristic.
