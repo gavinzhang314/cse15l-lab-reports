@@ -4,7 +4,7 @@ The command I will be researching is `grep`. The only source I used to understan
 
 ## `-r`: Recursive Searching
 
-The `-r` (also `-R`) flag recursively searches for matches with the given regular expression in all of the files in a given directory and its subdirectories. Therefore, while `grep` usually only accepts a file or list of files as its arguments, `grep -r` accepts directories in addition to files. This is useful for searching entire directories without knowing the structure of the directory and its subdirectories. For instance, if we wanted to search all files within `written_2/` for the word `Maxwell` without `-r`, we'd have to know that all of the files are either 2 or 3 levels deeper (depending on if they are in `nonfiction/` or `travel_guides/`) and then type `grep "Maxwell" written_2/*/*/* written_2/*/*/*/*`. However, with `-r`, we can simply do the following:
+The `-r` (also `-R`) flag recursively searches for matches with the given regular expression in all of the files in a given directory and its subdirectories. Therefore, while `grep` usually only accepts a file or list of files as its arguments, `grep -r` accepts directories in addition to files. This is useful for searching entire directories without knowing the structure of the directory and its subdirectories. For instance, if we wanted to search all files within `written_2/` for the word "Maxwell" without `-r`, we'd have to know that all of the files are either 2 or 3 levels deeper (depending on if they are in `nonfiction/` or `travel_guides/`) and then type `grep "Maxwell" written_2/*/*/* written_2/*/*/*/*`. However, with `-r`, we can simply do the following:
 
 ```
 $ grep -r "Maxwell" .
