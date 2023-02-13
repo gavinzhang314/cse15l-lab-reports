@@ -42,3 +42,22 @@ $ grep -m 1 -r "museum" written_2/ > matches.txt
 $ wc -l matches.txt                             
       91 matches.txt
 ```
+
+## `-i`: Case Insensitive Matching
+`-i` can be used to case-insensitive matching. This can be useful since it means that we can search for words what may be capitalized in titles and headers:
+
+```
+$ grep -i -r "readings" . 
+./written_2/non-fiction/OUP/Fletcher/ch5.txt:Alternative Readings
+...
+```
+
+Additionally, `-i` means that matches at the beginning of sentences will also be found:
+
+```
+$ grep -i -r "educational" .
+...
+./written_2/non-fiction/OUP/Berk/ch1.txt:Educational practice followed suit, moving back toward traditionalism. As Scholastic Aptitude Test (SAT) scores of American high school graduates plummeted and concern over the academic preparation of American children and youths became widespread, a “back to basics” movement arose that, by 1980, was in full swing. Academic preschools ﬂourished, and kindergarten and primary classrooms returned to whole-class, teacher-directed instruction relying heavily on workbooks and frequent grading, a style still prevalent today.43 
+
+...
+```
