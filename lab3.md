@@ -24,21 +24,24 @@ written_2/travel_guides/berlitz1/WhereToMalaysia.txt:        (Maxwell Hill), 12 
 written_2/travel_guides/berlitz2/Canada-WhereToGo.txt:New Brunswick’s capital is a pleasant, sleepy little town most notable for the splendid Beaverbrook Art Gallery. It was built by William Maxwell Aitken (1879–1964), who as Lord Beaverbrook became a great British press baron and a member of Winston Churchill’s war cabinet. (Although born in Ontario, he took his title from his home in Beaverbrook, New Brunswick.) Look for Graham Sutherland’s imposing portrait of the publisher of London’s Daily Express and other fiercely patriotic newspapers. But the gallery’s masterpiece is Salvador Dalí’s Santiago el Grande. Other important works include the English school of Reynolds, Turner, Gainsborough, and Romney, and Canadian paintings by Tom Thomson, Emily Carr, and Cornelius Krieghoff.
 ```
 
-## `-m`: Maximum Matches
-When `-m <number>` (or `--max=<number>`) is used, `grep` stops looking for matches in a file after the specified number of matches is found. This is useful for providing a cleaner output if all we care about is that a file merely contains a match. For instance, to find the files in `written_2/travel_guides/` containing the word `Bahamas`, we can do `grep "Bahamas" written_2/travel_guides/*/*`. However, the output is hard to sift through because many of the files that contain the word "Bahamas" show up multiple times. Instead, we can use `-m 1` to ensure that each file with a match is only listed once:
+## `-l`: Output Filepaths Only
+
+When `-l` is used, `grep` only outputs the filepaths of the files given as arguments that contain a match instead of also outputting the lines with matches in them themselves. This is useful for providing a cleaner output if all we care about is that a file merely contains a match. For instance, to find the files in `written_2/travel_guides/` containing the word `Bahamas`, we could do `grep "Bahamas" written_2/travel_guides/*/*`. However, the output is hard to sift through because many of the files that contain the word "Bahamas" show up multiple times. Instead, we can use `-l` to ensure that only the filepaths are listed:
 
 ```
-% grep -m 1 "Bahamas" written_2/travel_guides/*/*
-written_2/travel_guides/berlitz1/WhatToFWI.txt:        waters off the Bahamas, Puerto Rico, and the Virgin Islands, but the
-written_2/travel_guides/berlitz2/Bahamas-History.txt:Centuries before the arrival of Columbus, a peaceful Amerindian people who called themselves the Luccucairi had settled in the Bahamas. Originally from South America, they had traveled up through the Caribbean islands, surviving by cultivating modest crops and from what they caught from sea and shore. Nothing in the experience of these gentle people could have prepared them for the arrival of the Pinta, the Niña, and the Santa Maria at San Salvador on 12 October 1492. Columbus believed that he had reached the East Indies and mistakenly called these people Indians. We know them today as the Lucayans. Columbus claimed the island and others in the Bahamas for his royal Spanish patrons, but not finding the gold and other riches he was seeking, he stayed for only two weeks before sailing towards Cuba.
-written_2/travel_guides/berlitz2/Bahamas-Intro.txt:The Bahamas and the Bahamians
-written_2/travel_guides/berlitz2/Bahamas-WhatToDo.txt:Crafts. Bahamians have always had to fend for themselves, and this resourcefulness has led them to become proficient at a number of practical handicrafts, many of which make beautiful souvenirs. Straw goods are the most ubiquitous. The Seminole Indians of Red Bay on Andros are said to produce the finest work on the Bahamas, though each island has its own individual patterns and differences in style. It is still possible to watch the women at work on the islands of Andros and at George Town on Exuma. Straw work can be bought from small workshops in people’s homes or from the better quality straw vendors in Nassau. Prices can be high, but even small bowls make beautiful and practical reminders of your trip. The handmade pieces are likely to become rare within a couple of generations, because so few young Bahamian women are now taking up the craft. Be aware that much of the straw work, particularly the mass-market goods like hats and bags, is not made in the Bahamas but in Taiwan and China. If you want to be sure of getting genuine Bahamian straw work, buy from places such as The Plait Lady, who has a shop on Bay Street in Nassau; you’ll have to pay a little more but you’ll be sure you’re getting an authentic handmade work of art.
+$ grep -l "Bahamas" written_2/travel_guides/*/*
+written_2/travel_guides/berlitz1/WhatToFWI.txt
+written_2/travel_guides/berlitz2/Bahamas-History.txt
+written_2/travel_guides/berlitz2/Bahamas-Intro.txt
+written_2/travel_guides/berlitz2/Bahamas-WhatToDo.txt
+written_2/travel_guides/berlitz2/Bahamas-WhereToGo.txt
+written_2/travel_guides/berlitz2/Canada-WhereToGo.txt
 ```
 
 This also makes it possible to run `wc` on the output to count the number of files with a match. If we wanted to find the number of files in `written_2/` containing the word "museum", for instance, we can redirect the output to a file and then run `wc` on it:
 
 ```
-$ grep -m 1 -r "museum" written_2/ > matches.txt
+$ grep -l -r "museum" written_2/ > matches.txt
 $ wc -l matches.txt                             
       91 matches.txt
 ```
