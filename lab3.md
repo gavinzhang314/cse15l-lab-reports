@@ -4,7 +4,7 @@ The command I will be researching is `grep`. The only source I used to understan
 
 ## `-r`: Recursive Searching
 
-The `-r` (also `-R`) flag recursively searches for matches with the given regular expression in all of the files in a given directory and its subdirectories. Therefore, while `grep` usually only accepts a file or list of files as its arguments, `grep -r` accepts directories in addition to files. This is useful for searching entire directories without knowing the structure of the directory and its subdirectories. For instance, if we wanted to search all files within `written_2/` for the word "Maxwell" without `-r`, we'd have to know that all of the files are either 2 or 3 levels deeper (depending on if they are in `nonfiction/` or `travel_guides/`) and then type `grep "Maxwell" written_2/*/*/* written_2/*/*/*/*`. However, with `-r`, we can simply do the following:
+The `-r` (also `-R`) flag tells `grep` to recursively search for matches with the given regular expression in all of the files in a given directory and its subdirectories. Therefore, while `grep` usually only accepts a file or list of files as its arguments, `grep -r` accepts directories in addition to files. This is useful for searching entire directories without knowing the structure of the directory and its subdirectories. For instance, if we wanted to search all files within `written_2/` for the word "Maxwell" without `-r`, we'd have to know that all of the files are either 2 or 3 levels deeper (depending on if they are in `nonfiction/` or `travel_guides/`) and then type `grep "Maxwell" written_2/*/*/* written_2/*/*/*/*`. However, with `-r`, we can simply do the following:
 
 ```
 $ grep -r "Maxwell" .
@@ -26,7 +26,7 @@ written_2/travel_guides/berlitz2/Canada-WhereToGo.txt:New Brunswick’s capital 
 
 ## `-l`: Output Filepaths Only
 
-When `-l` is used, `grep` only outputs the filepaths of the files given as arguments that contain a match instead of also outputting the lines with matches in them themselves. This is useful for providing a cleaner output if all we care about is that a file merely contains a match. For instance, to find the files in `written_2/travel_guides/` containing the word `Bahamas`, we could do `grep "Bahamas" written_2/travel_guides/*/*`. However, the output is hard to sift through because many of the files that contain the word "Bahamas" show up multiple times. Instead, we can use `-l` to ensure that only the filepaths are listed:
+The `-l` flag tells `grep` to only output the filepaths of the files that contain a match, instead of also outputting the lines with matches as it does normally. This is useful for providing a cleaner output if all we care about is that a file merely contains a match. For instance, to find the files in `written_2/travel_guides/` containing the word `Bahamas`, we could do `grep "Bahamas" written_2/travel_guides/*/*`. However, the output is hard to sift through because many of the files that contain the word "Bahamas" show up multiple times. Instead, we can use `-l` to ensure that only the filepaths are listed:
 
 ```
 $ grep -l "Bahamas" written_2/travel_guides/*/*
@@ -61,6 +61,35 @@ Additionally, `-i` means that matches at the beginning of sentences will also be
 $ grep -i -r "educational" .
 ...
 ./written_2/non-fiction/OUP/Berk/ch1.txt:Educational practice followed suit, moving back toward traditionalism. As Scholastic Aptitude Test (SAT) scores of American high school graduates plummeted and concern over the academic preparation of American children and youths became widespread, a “back to basics” movement arose that, by 1980, was in full swing. Academic preschools ﬂourished, and kindergarten and primary classrooms returned to whole-class, teacher-directed instruction relying heavily on workbooks and frequent grading, a style still prevalent today.43 
-
 ...
 ```
+
+## `--include`: Filepath Patter Matching
+The `--include <pattern>` flag tells `grep` to only search the files with filepaths that match the given pattern. This is useful mainly when used with `-r`. For instance, if we wanted to search within `written_2/travel_guides/` for all matches of the word "shop" in the `.txt` files on Paris without using any flags, we could do `grep "shop" written_2/travel_guides/*/Paris*`. However, with the `--include` and `-r` tags, we could do:
+
+## `-n`: Line Numbers
+The `-n` or `--line-number` flag tells `grep` to also output the line number of each match. This is useful if we're interested in just one section of a file containing a long passage of text. For instance, let's say we were interested in learning about the United States' influence on the history of Cuba. To help us in our search, we could run the following command:
+
+```
+$ grep -n "United States" written_2/travel_guides/berlitz2/Cuba-History.txt 
+15:In 1895 José Martí, Cuba’s most venerated patriot (who now has a street, square, or building named after him in every town), led the next and most important uprising against Spain. Born in 1853 and exiled at 18 for his political views, Martí became a journalist and poet. From exile in the United States he argued for Cuban independence. Martí was killed in an ambush during the War of Independence, which began in 1895 and in which some 300,000 Cubans died.
+16:Throughout the 19th century, the United States, keenly interested in the island’s strategic significance and its sugar market, had become increasingly involved in Cuban affairs. A US purchase of the island from Spain had long been on the agenda, even though Martí had warned of becoming a satellite of the United States (“I know the Monster, because I have lived in its lair,” he wrote).
+17:In February 1898 the U.S.S. Maine was sunk in Havana’s harbor, killing all 260 crew members. Although Spanish responsibility was never incontrovertibly established, the United States used the sinking as a pretext to declare war. US victory came swiftly, with Spain surrendering claim to the island by the end of the same year. A provisional military government lasted to 1902, when Cuba became an independent republic.
+19:For the next five decades the United States, the largest importer of Cuban sugar, dominated the island’s economy and largely controlled its political processes. The period was rife with political corruption, violence, and terrorism. After 1933 Fulgencio Batista, though only a sergeant, orchestrated the strings of power through a series of puppet presidents before winning the presidency outright in 1940. He retired in 1944 but returned by staging a military coup in 1952. His venal dictatorship made it possible for him to invest some $300 million abroad by 1959.
+20:Since the 1920s disillusionment with the nascent republic — with its clear dependence on the United States and its lack of political probity or social equality — had grown steadily. Although Cuba had the second-highest per capita income in Latin America, prosperity did not filter down from the upper classes. In fact, the World Bank in 1950 declared as many as 60 percent of Cubans undernourished. In Havana there was a greater concentration of millionaires than anywhere else in Central or South America, and the capital was dubbed “an offshore Las Vegas” for its brothels, casinos, and gangsters.
+```
+
+This tells us that we should read through lines 15, 16, 17, 19, and 20 to find the information we're looking for.
+
+Similarly, if we wanted to learn about poet W. B. Yeats' relationship with Dublin, we can run the following command:
+
+```
+$ grep -n "Yeats" written_2/travel_guides/berlitz1/*Dublin.txt
+written_2/travel_guides/berlitz1/HistoryDublin.txt:199:        galvanized the Irish — and in the words of Yeats’s poem, “All changed,
+written_2/travel_guides/berlitz1/IntroDublin.txt:59:        to have produced three Nobel Prize winners for literature — Yeats,
+written_2/travel_guides/berlitz1/WhereToDublin.txt:658:        the Abbey Theatre (see page 88). Founded in 1904 by W.B. Yeats, Lady
+written_2/travel_guides/berlitz1/WhereToDublin.txt:846:        post-impressionist paintings of Jack B. Yeats (brother of the famous
+written_2/travel_guides/berlitz1/WhereToDublin.txt:922:        roomful of Jack Yeats’s paintings. There are also watercolors,
+```
+
+This tells us not only what files we should look at but also where exactly we should look in them, saving us from having to spend time going through the entirety of all three files.
