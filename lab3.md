@@ -64,9 +64,6 @@ $ grep -i -r "educational" .
 ...
 ```
 
-## `--include`: Filepath Patter Matching
-The `--include <pattern>` flag tells `grep` to only search the files with filepaths that match the given pattern. This is useful mainly when used with `-r`. For instance, if we wanted to search within `written_2/travel_guides/` for all matches of the word "shop" in the `.txt` files on Paris without using any flags, we could do `grep "shop" written_2/travel_guides/*/Paris*`. However, with the `--include` and `-r` tags, we could do:
-
 ## `-n`: Line Numbers
 The `-n` or `--line-number` flag tells `grep` to also output the line number of each match. This is useful if we're interested in just one section of a file containing a long passage of text. For instance, let's say we were interested in learning about the United States' influence on the history of Cuba. To help us in our search, we could run the following command:
 
