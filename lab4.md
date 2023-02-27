@@ -47,7 +47,7 @@ Keys pressed:
 Since I had compiled and run the tests before, I simply used the arrow keys to retrive the commands I used to do so and rerun them.
 
 ## Step 9
-<img width="1025" alt="image" src="lab4-6.png">
+<img width="1025" alt="image" src="lab4-7.png">
 
 Keys pressed:
 `git add L<tab>.j<tab><enter>`
