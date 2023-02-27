@@ -21,8 +21,8 @@ Before typing this command, I had copied the URL of my repository to my clipboar
 
 Keys pressed:
 `cd l<tab><enter>`
-`javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java<enter>'
-'<up><ctrl+a><right><right><right><right><right><delete><ctrl+e><ctrl+w>org.junit.runner.JUnitCore L<tab>T<tab><delete><enter>`
+`javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java<enter>`
+`<up><ctrl+a><right><right><right><right><right><delete><ctrl+e><ctrl+w>org.junit.runner.JUnitCore L<tab>T<tab><delete><enter>`
 
 First, I navigated into the folder containing the repository, using tabs to autocomplete. Then, I manually typed out the command used to compile all of the `.java` files. Finally, to run the tests, I accessed the previous command, navigated to the front of the command to change `javac` to `java`, and the navigated to the back of the command to replace `*.java` with `junit.runner.JUnitCore ListExamplesTests`. I also used tab autocompletion to do this.
 
