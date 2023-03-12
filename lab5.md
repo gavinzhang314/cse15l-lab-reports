@@ -3,6 +3,7 @@
 I will be using `jdb` in order to figure out the values of the arguments passed to the methods that the server calls and to track the values of the class' fields.
 
 This is the code I used for the server.
+
 <img width="1025" alt="image" src="lab2-screenshot3.png">
 
 We want to know more about the arguments passed to the handler class' methods as well as the handler's fields.
@@ -10,11 +11,14 @@ We want to know more about the arguments passed to the handler class' methods as
 According to the [documentation](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/jdb.html) for the `jdb` command, in order to make it possible to access local variables, we have to compile our code with the `-g` command:
 
 ```
-$ javac -g *.java`
+$ javac -g *.java
+```
 
 We start by running `jdb` with the following command to run the server on port 4000:
 
-`$ jdb StringServer 4000`
+```
+$ jdb StringServer 4000
+```
 
 This gives us a prompt:
 <img width="1025" alt="image" src="lab5-screenshot1.png">
