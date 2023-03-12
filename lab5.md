@@ -82,7 +82,7 @@ Then, we can run `cont` to let `StringServerHandler.handleRequest()` finally fin
 
 Unlike last time, we don't immediately hit another breakpoint from the server handling a request for a favicon. I'm guessing that this is because the browser caches favicons so it doesn't need to keep on sending requests for them.
 
-If we visit `http://localhost:4000/add-message?s=Second%20message`, and then run the same commands, we can see that something similar is happening again. `StringServerHandler.handleRequest()` receives the URL we type into the browser and then appends it to `message`:
+If we visit `http://localhost:4000/add-message?s=Second%20message`, and then run the same commands, we can see that something similar is happening again. `StringServerHandler.handleRequest()` receives the URL we type into the browser, extracts the message from it, and then appends the message to `message`:
 
 <img width="1025" alt="image" src="lab5-screenshot12.png">
 
@@ -100,7 +100,7 @@ We can then run `print url` and `print message` to see what is passed to the met
 
 <img width="1025" alt="image" src="lab5-screenshot15.png">
 
-As expected, the method leaves `message unchanged`.
+As expected, the method leaves `message` unchanged.
 
 Finally, we can let the method finally resolve by running `cont`. We now see the error message that was returned on line 18 displayed in our browser:
 
